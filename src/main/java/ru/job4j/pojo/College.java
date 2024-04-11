@@ -7,6 +7,6 @@ public class College {
         pavel.setFullName("Pavel Vladimirovich Pshenitsyn");
         pavel.setGroupNumber(9495);
         pavel.setEnteredDate("01.09.2009");
-        System.out.println("Student: " + pavel.getFullName() + "\ngroup: " + pavel.getGroupNumber() + "\ndate: " + pavel.getEnteredDate());
+        System.out.println("Student: " + pavel.getFullName() + System.lineSeparator() + "group: " + pavel.getGroupNumber() + System.lineSeparator() + "date: " + pavel.getEnteredDate());
     }
 }
