@@ -1,31 +1,11 @@
 package ru.job4j.tracker;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;
     private int size = 0;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Tracker tracker = (Tracker) o;
-        return ids == tracker.ids && size == tracker.size && Arrays.equals(items, tracker.items);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(ids, size);
-        result = 31 * result + Arrays.hashCode(items);
-        return result;
-    }
 
     public Item add(Item item) {
         item.setId(ids++);
@@ -34,28 +14,20 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] result = new Item[items.length];
-        size = 0;
-        for (Item item : items) {
-            if (item != null) {
-                result[size++] = item;
-            }
-        }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
         Item[] resultAll = findAll();
-        Item[] resultName = new Item[resultAll.length];
-        size = 0;
-        for (Item item : resultAll) {
+        Item[] resultName = new Item[size];
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            Item item = resultAll[i];
             if (item.getName().equals(key)) {
-                resultName[size++] = item;
+                resultName[count++] = item;
             }
         }
-        resultName = Arrays.copyOf(resultName, size);
-        return resultName;
+        return Arrays.copyOf(resultName, count);
     }
 
     public Item findById(int id) {
