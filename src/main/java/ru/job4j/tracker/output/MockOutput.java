@@ -2,11 +2,11 @@ package ru.job4j.tracker.output;
 
 import ru.job4j.tracker.input.Input;
 
-public class Mock implements Input {
+public class MockOutput implements Input {
     private String[] answers;
     private int position = 0;
 
-    public Mock(String[] answers) {
+    public MockOutput(String[] answers) {
         this.answers = answers;
     }
 
