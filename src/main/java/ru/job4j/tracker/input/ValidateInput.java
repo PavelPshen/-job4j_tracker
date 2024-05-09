@@ -1,6 +1,4 @@
-package ru.job4j.tracker;
-
-import ru.job4j.tracker.input.ConsoleInput;
+package ru.job4j.tracker.input;
 
 public class ValidateInput extends ConsoleInput {
 
