@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 import org.junit.jupiter.api.Test;
 import ru.job4j.tracker.action.*;
 import ru.job4j.tracker.input.Input;
-import ru.job4j.tracker.output.MockOutput;
+import ru.job4j.tracker.input.MockInput;
 import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.output.StubOutput;
 
@@ -13,7 +13,7 @@ class StartUITest {
     @Test
     void whenCreateItem() {
         Output output = new StubOutput();
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
@@ -31,7 +31,7 @@ class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
@@ -47,7 +47,7 @@ class StartUITest {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
@@ -61,7 +61,7 @@ class StartUITest {
     @Test
     void whenExit() {
         Output output = new StubOutput();
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0"}
         );
         Tracker tracker = new Tracker();
@@ -82,7 +82,7 @@ class StartUITest {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         String replaceName = "New Test Name";
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
         );
         UserAction[] actions = new UserAction[]{
@@ -110,7 +110,7 @@ class StartUITest {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", "1"}
         );
         UserAction[] actions = new UserAction[]{
@@ -140,7 +140,7 @@ class StartUITest {
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
         String searchName = two.getName();
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", searchName, "1"}
         );
         UserAction[] actions = new UserAction[]{
@@ -169,7 +169,7 @@ class StartUITest {
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
         String searchId = String.valueOf(two.getId());
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"0", searchId, "1"}
         );
         UserAction[] actions = new UserAction[]{
@@ -194,7 +194,7 @@ class StartUITest {
     @Test
     void whenInvalidExit() {
         Output output = new StubOutput();
-        Input input = new MockOutput(
+        Input input = new MockInput(
                 new String[] {"1", "0"}
         );
         Tracker tracker = new Tracker();

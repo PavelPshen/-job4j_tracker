@@ -1,12 +1,10 @@
-package ru.job4j.tracker.output;
+package ru.job4j.tracker.input;
 
-import ru.job4j.tracker.input.Input;
-
-public class MockOutput implements Input {
+public class MockInput implements Input {
     private String[] answers;
     private int position = 0;
 
-    public MockOutput(String[] answers) {
+    public MockInput(String[] answers) {
         this.answers = answers;
     }
 
