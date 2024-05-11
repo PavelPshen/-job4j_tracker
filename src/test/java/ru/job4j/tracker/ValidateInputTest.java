@@ -37,13 +37,17 @@ class ValidateInputTest {
     void whenInvalidMultipleCorrect() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"1", "1", "1", "1"}
+                new String[] {"1", "2", "3", "4"}
         );
         ValidateInput input = new ValidateInput(output, in);
-        for (int i = 0; i < 4; i++) {
-            int selected = input.askInt("Enter menu:");
-            assertThat(selected).isEqualTo(1);
-        }
+        int selected = input.askInt("Enter menu:");
+        assertThat(selected).isEqualTo(1);
+        selected = input.askInt("Enter menu:");
+        assertThat(selected).isEqualTo(2);
+        selected = input.askInt("Enter menu:");
+        assertThat(selected).isEqualTo(3);
+        selected = input.askInt("Enter menu:");
+        assertThat(selected).isEqualTo(4);
     }
 
     @Test
