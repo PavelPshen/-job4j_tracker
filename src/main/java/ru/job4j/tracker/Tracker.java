@@ -25,7 +25,8 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-        return items;
+        List<Item> result = new ArrayList<>(items);
+        return result;
     }
 
     public List<Item> findByName(String key) {
@@ -56,7 +57,7 @@ public class Tracker {
     public void delete(int id) {
         int index = indexOf(id);
         if (index != -1) {
-            items.remove(indexOf(id));
+            items.remove(index);
         }
     }
 }
