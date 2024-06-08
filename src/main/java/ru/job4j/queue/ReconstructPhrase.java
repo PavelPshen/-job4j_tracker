@@ -19,9 +19,9 @@ public class ReconstructPhrase {
         for (int i = 0; i < size; i++) {
             if (i % 2 == 0) {
                 builder.append(evenElements.poll());
-                continue;
+            } else {
+                evenElements.poll();
             }
-                evenElements.remove();
         }
         return builder.toString();
     }
