@@ -16,12 +16,13 @@ public class BankService {
     }
 
     public void deleteUser(String passport) {
-        users.remove(findByPassport(passport));
+        users.remove(new User(passport, ""));
     }
 
     public void addAccount(String passport, Account account) {
-        if (users.get(findByPassport(passport)) != null && !users.get(findByPassport(passport)).contains(account)) {
-            users.get(findByPassport(passport)).add(account);
+        User user = findByPassport(passport);
+        if (users.get(user) != null && !users.get(user).contains(account)) {
+            users.get(user).add(account);
         }
     }
 
@@ -35,8 +36,9 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        if (getAccounts(findByPassport(passport)) != null) {
-            for (Account account : getAccounts(findByPassport(passport))) {
+        User user = findByPassport(passport);
+        if (getAccounts(user) != null) {
+            for (Account account : getAccounts(user)) {
                 if (account.getRequisite().equals(requisite)) {
                     return account;
                 }
@@ -49,13 +51,14 @@ public class BankService {
                                  String destinationPassport, String destinationRequisite,
                                  double amount) {
         boolean result = false;
-        if (findByRequisite(sourcePassport, sourceRequisite) != null
-                && findByRequisite(destinationPassport, destinationRequisite) != null) {
-            double sourceBalance = findByRequisite(sourcePassport, sourceRequisite).getBalance();
-            double destinationBalance = findByRequisite(destinationPassport, destinationRequisite).getBalance();
+        Account accountSource = findByRequisite(sourcePassport, sourceRequisite);
+        Account accountDestination = findByRequisite(destinationPassport, destinationRequisite);
+        if (accountSource != null && accountDestination != null) {
+            double sourceBalance = accountSource.getBalance();
+            double destinationBalance = accountDestination.getBalance();
             if (sourceBalance >= amount) {
-                findByRequisite(sourcePassport, sourceRequisite).setBalance(sourceBalance - amount);
-                findByRequisite(destinationPassport, destinationRequisite).setBalance(destinationBalance + amount);
+                accountSource.setBalance(sourceBalance - amount);
+                accountDestination.setBalance(destinationBalance + amount);
                 result = true;
             }
         }
