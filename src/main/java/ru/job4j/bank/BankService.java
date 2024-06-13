@@ -42,13 +42,11 @@ public class BankService {
         User user = findByPassport(passport);
         if (user != null) {
             List<Account> accounts = users.get(user);
-            if (accounts != null) {
                 for (Account account : accounts) {
                     if (account.getRequisite().equals(requisite)) {
                         return account;
                     }
                 }
-            }
         }
         return null;
     }
