@@ -1,6 +1,7 @@
 package ru.job4j.hashmap;
 
 import java.util.*;
+import java.util.function.BiFunction;
 
 public class AnalyzeByMap {
 
@@ -39,7 +40,7 @@ public class AnalyzeByMap {
         int sumScore = 0;
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                map.put(subject.name(), map.getOrDefault(subject.name(), 0) + subject.score());
+                map.merge(subject.name(), subject.score(), Integer::sum);
             }
         }
         for (String linked : map.keySet()) {
@@ -69,7 +70,7 @@ public class AnalyzeByMap {
         int sumScore;
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                map.put(subject.name(), map.getOrDefault(subject.name(), 0) + subject.score());
+                map.merge(subject.name(), subject.score(), Integer::sum);
             }
         }
         for (String linked : map.keySet()) {
